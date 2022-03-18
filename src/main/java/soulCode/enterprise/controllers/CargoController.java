@@ -29,41 +29,78 @@ public class CargoController {
 	@Autowired
 	CargoService cargoService;
 	
+	/**
+	 * rota para mostrar todos os cargos cadastrados no banco de dados
+	 * @return
+	 */
 	@GetMapping("/cargo")
 	public List<Cargo> mostraTodosCargos(){
 		List<Cargo> cargo = cargoService.mostraTodosCargos();
 		return cargo;
 	}
 	
+	/** 
+	 * rota para buscar um cargo pelo is e exbir os seus dados
+	 * @param id_cargo id do cargo que deve ser procurado
+	 * @return
+	 */
 	@GetMapping("/cargo/{id_cargo}")
 	public ResponseEntity<?> buscaUmCargo(@PathVariable Integer id_cargo){
 		Cargo cargo = cargoService.buscaUmCargo(id_cargo);
 		return ResponseEntity.ok().body(cargo);
 	}
+	
+
+	/**
+	 * rota para exibir todos os cargos que não possuem um supervisor vinculado
+	 * @return lista contendo todos os registros dos supervisores encontrados que atendem a retrição de não possuírem cargo
+	 */
 	@GetMapping("/cargoSemSupervisor")
 	public List<Cargo> supervisorSemCargo(){
 		List<Cargo> cargos = cargoService.cargoSemSupervisor();
 		return cargos;
 	}
 	
+	
+	/**
+	 * rota par exibir qual o cargo vinculado a um supervisor
+	 * @param id_supervisor ql o id que deve ser procurado
+	 * @return o objeto do cargo que está vinculado ao supervisor
+	 */
 	@GetMapping("/cargo/cargo-supervisor/{id_supervisor}")
 	public Cargo cargoDoSupervisor(@PathVariable Integer id_supervisor) {
 		return cargoService.cargoDoSupervisor(id_supervisor);
 	}
 	
+	
+	/**
+	 * rota para exibir todos os cargos e seus respectivos supervisores vinculados
+	 * @return uma lista contendo todos os cargos e seus respectivos supervisores 
+	 */
 	@GetMapping("/cargo/cargo-supervisor")
 	public List<List> cargosComSeuSupervisor(){
 		List<List> cargos = cargoService.cargoComSeuSupervisor();
 		return cargos;
 	}
 	
+	/**
+	 * rota para cadastrar um novo cargo no banco de dados, sendo que pode ser um cadastro que já venha com um supervisor para fazer a vinculação
+	 * @param id_supervisor (opcinal) indica se o cargo já possuirá um supervisor no momento da sua criação
+	 * @param cargo obj contendo as informações do cargo que será adcionado ao banco
+	 * @return
+	 */
 	@PostMapping("/cargo")
 	public ResponseEntity<Cargo> cadastraCargo(@RequestParam(value="supervisor", required=false)Integer id_supervisor, @RequestBody Cargo cargo){
 		cargo = cargoService.cadastrarCargo(id_supervisor, cargo);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(cargo.getId_cargo()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
-	
+	/**
+	 * rota para editar os dados de um cargo que já está cadastrado no banco de dados 
+	 * @param id_cargo id do cargo que deve ser editado
+	 * @param cargo obj contendo as informações que devem ser salvas, sobrescrevendo os dados antigos
+	 * @return
+	 */
 	@PutMapping("/cargo/{id_cargo}")
 	public ResponseEntity<?> editaCargo(@PathVariable Integer id_cargo, @RequestBody Cargo cargo){
 		cargo.setId_cargo(id_cargo);
@@ -71,6 +108,11 @@ public class CargoController {
 		return ResponseEntity.noContent().build();
 	}
 	
+	/**
+	 * função para deletar um cargo da base de dados
+	 * @param id_cargo id do cargo que deve ser deletado
+	 * @return nenhum
+	 */
 	@DeleteMapping("/cargo/{id_cargo}")
 	public ResponseEntity<?> deletarCargo(@PathVariable Integer id_cargo){
 		cargoService.deletarCargo(id_cargo);
@@ -79,9 +121,9 @@ public class CargoController {
 	
 	/**
 	 * faz a vinculação de um supervisor a um cargo 
-	 * @param id_cargo
-	 * @param id_supervisor
-	 * @return
+	 * @param id_cargo id do cargo que receberá o supervisor
+	 * @param id_supervisor id do supervisor que supervisionará o cargo a partir de então
+	 * @return nenhum
 	 */
 	@PutMapping("/cargo/definirSupervisor/{id_cargo}/{id_supervisor}")
 	public ResponseEntity<Supervisor> atribuirSupervisor(@PathVariable Integer id_cargo, @PathVariable Integer id_supervisor){
@@ -89,6 +131,12 @@ public class CargoController {
 		return ResponseEntity.noContent().build();
 	}
 	
+	/**
+	 * faz a desassociação entre supervisor e o cargo
+	 * @param id_cargo id do cargo que terá o supervisor retirado
+	 * @param id_supervisor id do supervisor que será liberado
+	 * @return nenhum
+	 */
 	@PutMapping("/cargo/tirarSupervisor/{id_cargo}/{id_supervisor}")
 	public ResponseEntity<Supervisor> deixarCargoSemSupervisor(@PathVariable Integer id_cargo, @PathVariable Integer id_supervisor){
 		cargoService.deixarCargoSemSupervisor(id_cargo, id_supervisor);
