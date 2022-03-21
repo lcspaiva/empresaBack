@@ -11,6 +11,13 @@ import javax.persistence.ManyToOne;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 //anotação dizendo que a classe será um modelo para o banco de dados
+/**
+ * classe que define o modelo dos dados do objeto funcionario
+ * @author tatiana
+ * @author lucas
+ * 
+ *
+ */
 @Entity
 public class Funcionario {
 	

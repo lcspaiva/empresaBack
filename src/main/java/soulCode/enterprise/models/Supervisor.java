@@ -9,7 +9,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
+/**
+ * classe que define o modelo dos dados do objeto supervisor
+ * @author tatiana
+ * @author lucas
+ * 
+ *
+ */
 @Entity
 public class Supervisor {
 	

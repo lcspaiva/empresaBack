@@ -9,6 +9,12 @@ import java.nio.file.StandardCopyOption;
 
 import org.springframework.web.multipart.MultipartFile;
 
+/**
+ * classe que é encarregada de fazer o upload da foto
+ * @author lucas
+ * @author tatiana
+ *
+ */
 public class UploadFileUtil {
 	 
 	//função que fará o salvamento do arquivo, é meio que o service

@@ -25,6 +25,12 @@ import soulCode.enterprise.services.PagamentoService;
 @RestController
 @CrossOrigin
 @RequestMapping("empresa")
+/**
+ * classe de controle das funções do pagamento
+ * @author tatiana
+ * @author lucas
+ *
+ */
 public class PagamentoController {
 	
 	@Autowired

@@ -1,5 +1,11 @@
 package soulCode.enterprise.services.exceptions;
 
+/**
+ * classe que faz o tratamento de excessões
+ * @author lucas
+ * @author tatiana
+ *
+ */
 public class DataEntegrityViolationException extends RuntimeException {
 	
 	//sinaliza a versão da aplicação

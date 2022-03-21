@@ -19,7 +19,12 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+/**
+ * classe que define o modelo dos dados do objeto pagamento
+ * @author tatiana
+ * @author lucas
 
+ */
 @Entity
 public class Pagamento {
 	

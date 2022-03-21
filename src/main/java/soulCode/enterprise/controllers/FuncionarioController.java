@@ -27,6 +27,12 @@ import soulCode.enterprise.services.FuncionarioService;
 	//indicar que é uma classe de controle
 	//remover o erro de CORS
 	//indicar que a rota principal será empresa, logo a url seria, localhost:8080/empresa/home etc;
+/**
+ * classe de controle das funções do funcionario 
+ * @author tatiana
+ * @author lucas
+ *
+ */
 @CrossOrigin
 @RestController
 @RequestMapping("empresa")

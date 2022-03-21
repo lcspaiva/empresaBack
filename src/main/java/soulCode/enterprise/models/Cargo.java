@@ -12,6 +12,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+/**
+ * classe que define o modelo dos dados do objeto cargo
+ * @author tatiana
+ * @author lucas
+ * 
+ *
+ */
 @Entity
 public class Cargo {
 	

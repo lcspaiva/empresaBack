@@ -24,6 +24,12 @@ import soulCode.enterprise.services.SupervisorService;
 @CrossOrigin
 @RestController
 @RequestMapping("empresa")
+/**
+ * classe de controle das funções do supervisor
+ * @author tatiana
+ * @author lucas
+ *
+ */
 public class SupervisorController {
 	
 	@Autowired

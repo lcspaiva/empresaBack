@@ -20,7 +20,12 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import soulCode.enterprise.models.Cargo;
 import soulCode.enterprise.models.Supervisor;
 import soulCode.enterprise.services.CargoService;
-
+/**
+ * classe de controle das funções do cargo 
+ * @author tatiana
+ * @author lucas
+ *
+ */
 @CrossOrigin
 @RestController
 @RequestMapping("empresa")

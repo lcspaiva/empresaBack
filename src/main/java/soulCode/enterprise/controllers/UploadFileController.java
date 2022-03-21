@@ -19,6 +19,12 @@ import soulCode.enterprise.util.UploadFileUtil;
 @RestController
 @RequestMapping("empresa")
 @CrossOrigin
+/**
+ * classe para fazer o upload do arquivo referente a foto
+ * @author lucas
+ * @author tatiana
+ * 
+ */
 public class UploadFileController {
 	
 	@Autowired
@@ -27,6 +33,14 @@ public class UploadFileController {
 	@Autowired
 	private FuncionarioService funcionarioService;
 	
+	/**
+	 * faz o upload da foto em uma pasta predeterminada, mediante as opçoes faz o upload de uma foto para um supervisor ou funcionario
+	 * @param id_destino id do registro que receberá a foto
+	 * @param dest flag que determina o tipo de registro que está recebendo a foto, 1-supervisor 2-funcionario
+	 * @param foto arquivo referente a foto
+	 * @param nome nome para o arquivo
+	 * @return
+	 */
 	@PostMapping("/envio/{id_destino}/{dest}")
 	public ResponseEntity<String> enviarDados(@PathVariable Integer id_destino, @PathVariable Integer dest, MultipartFile foto, @RequestParam(value="nome") String nome){
 		String fileName = nome;

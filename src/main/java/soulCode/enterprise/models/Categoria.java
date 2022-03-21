@@ -1,5 +1,11 @@
 package soulCode.enterprise.models;
 
+/**
+ *  classe de enumeração dos estados possiveis para o pagamento
+ * @author tatiana
+ * @author lucas
+ *
+ */
 public enum Categoria {
 	DEPOSITADO("Depositado"),
 	CANCELADO("Cancelado"),
